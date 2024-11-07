@@ -12,7 +12,7 @@ function Coins() {
   let [page, setPage] = useState(1);
   let [currency, setCurrency] = useState("inr");
   let [error, setError] = useState(false);
-  let [selectedOption , setSelectedOption] = useState("inr");
+  let [selectedOption, setSelectedOption] = useState("inr");
 
   const currencySymbol =
     currency === "inr" ? "Rs " : currency === "eur" ? "EUR " : "$ ";
@@ -40,13 +40,9 @@ function Coins() {
     fetchCoins();
   }, [currency, page]);
 
-
   const selected = (e) => {
     setSelectedOption(e.target.value);
-  }
-
-
-
+  };
 
   if (error) {
     return <h1>ERROR WHILE FETCHING DATA</h1>;

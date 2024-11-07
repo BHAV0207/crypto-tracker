@@ -21,9 +21,8 @@ function CoinDetails() {
   let [coin, setCoin] = useState({});
   let [loading, setLoading] = useState(true);
   let [currency, setCurrency] = useState("inr");
-  let [error , setError] = useState(false);
-
-
+  let [error, setError] = useState(false);
+  let [selectedOption, setSelectedOption] = useState("inr");
 
   const currencySymbol =
     currency === "inr" ? "Rs " : currency === "eur" ? "EUR " : "$ ";
@@ -38,15 +37,13 @@ function CoinDetails() {
     } catch (err) {
       setError(true);
     }
-
   };
   useEffect(() => {
     fetching();
   }, [params.id]);
 
-
-  if(error){
-    return <h1>ERROR WHILE FETCHING DATA</h1>
+  if (error) {
+    return <h1>ERROR WHILE FETCHING DATA</h1>;
   }
 
   return (
@@ -55,8 +52,8 @@ function CoinDetails() {
         <Loader />
       ) : (
         <>
-          <Box width={"full"} borderWidth={1}>
-            hello
+          <Box width={"full"} borderWidth={1} textAlign={"center"}>
+            WELCOME TO THE WORLD OF INFORMATION
           </Box>
           <div className="currencyChange">
             <label className="lab">
@@ -65,6 +62,8 @@ function CoinDetails() {
                 name="curr"
                 value={"inr"}
                 onClick={(e) => setCurrency(e.target.value)}
+                checked={selectedOption === "inr"}
+                onChange={(e) => (setSelectedOption(e.target.value))}
               />
               INR
             </label>
@@ -74,6 +73,8 @@ function CoinDetails() {
                 name="curr"
                 value={"usd"}
                 onClick={(e) => setCurrency(e.target.value)}
+                checked={selectedOption === "usd"}
+                onChange={(e) => (setSelectedOption(e.target.value))}
               />
               USD
             </label>
@@ -83,6 +84,8 @@ function CoinDetails() {
                 name="curr"
                 value={"eur"}
                 onClick={(e) => setCurrency(e.target.value)}
+                checked={selectedOption === "eur"}
+                onChange={(e) => (setSelectedOption(e.target.value))}
               />
               EUR
             </label>
