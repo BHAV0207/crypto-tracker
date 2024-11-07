@@ -1,19 +1,19 @@
-import { HStack } from "@chakra-ui/react";
+import { HStack, Button } from "@chakra-ui/react";
 import React from "react";
 import { Link } from "react-router-dom";
 
 function Header() {
   return (
-    <HStack p={"4"} shadow={"base"} bgColor={"blackAlpha.900"}>
-      <button variant={"unstyled"} color={"white"}>
+    <HStack p={"4"} shadow={"base"} bgColor={"blackAlpha.900"} spacing={"8"}>
+      <Button variant={"unstyled"} color={"white"} fontSize={"lg"} fontWeight={"bold"} mx={"2"}>
         <Link to="/">Home</Link>
-      </button>
-      <button varient={"unstyled"} color={"white"}>
+      </Button>
+      <Button variant={"unstyled"} color={"white"} fontSize={"lg"} fontWeight={"bold"} mx={"2"}>
         <Link to="/exchanges">Exchanges</Link>
-      </button>
-      <button varient={"unstyled"} color={"white"}>
+      </Button>
+      <Button variant={"unstyled"} color={"white"} fontSize={"lg"} fontWeight={"bold"} mx={"2"}>
         <Link to="/coins">Coins</Link>
-      </button>
+      </Button>
     </HStack>
   );
 }

@@ -11,6 +11,8 @@ function Coins() {
   let [loading, setLoading] = useState(true);
   let [page, setPage] = useState(1);
   let [currency, setCurrency] = useState("inr");
+  let [error, setError] = useState(false);
+  let [selectedOption , setSelectedOption] = useState("inr");
 
   const currencySymbol =
     currency === "inr" ? "Rs " : currency === "eur" ? "EUR " : "$ ";
@@ -23,17 +25,32 @@ function Coins() {
   const pageNo = new Array(132).fill(1);
 
   const fetchCoins = async () => {
-    const { data } = await axios.get(
-      `${server}/coins/markets?vs_currency=${currency}&page=${page}`
-    );
-    setCoins(data);
-    setLoading(false);
-    console.log(data);
+    try {
+      const { data } = await axios.get(
+        `${server}/coins/markets?vs_currency=${currency}&page=${page}`
+      );
+      setCoins(data);
+      setLoading(false);
+    } catch (err) {
+      setError(true);
+    }
   };
 
   useEffect(() => {
     fetchCoins();
   }, [currency, page]);
+
+
+  const selected = (e) => {
+    setSelectedOption(e.target.value);
+  }
+
+
+
+
+  if (error) {
+    return <h1>ERROR WHILE FETCHING DATA</h1>;
+  }
 
   return (
     <Container maxW={"container.xl"}>
@@ -48,6 +65,8 @@ function Coins() {
                 name="curr"
                 value={"inr"}
                 onClick={(e) => setCurrency(e.target.value)}
+                checked={selectedOption === "inr"}
+                onChange={selected}
               />
               INR
             </label>
@@ -57,6 +76,8 @@ function Coins() {
                 name="curr"
                 value={"usd"}
                 onClick={(e) => setCurrency(e.target.value)}
+                checked={selectedOption === "usd"}
+                onChange={selected}
               />
               USD
             </label>
@@ -66,6 +87,8 @@ function Coins() {
                 name="curr"
                 value={"eur"}
                 onClick={(e) => setCurrency(e.target.value)}
+                checked={selectedOption === "eur"}
+                onChange={selected}
               />
               EUR
             </label>

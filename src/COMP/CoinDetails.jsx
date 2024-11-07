@@ -21,6 +21,9 @@ function CoinDetails() {
   let [coin, setCoin] = useState({});
   let [loading, setLoading] = useState(true);
   let [currency, setCurrency] = useState("inr");
+  let [error , setError] = useState(false);
+
+
 
   const currencySymbol =
     currency === "inr" ? "Rs " : currency === "eur" ? "EUR " : "$ ";
@@ -28,14 +31,23 @@ function CoinDetails() {
   const params = useParams();
 
   const fetching = async () => {
-    const { data } = await axios.get(`${server}/coins/${params.id}`);
-    setCoin(data);
-    setLoading(false);
-    console.log(data);
+    try {
+      const { data } = await axios.get(`${server}/coins/${params.id}`);
+      setCoin(data);
+      setLoading(false);
+    } catch (err) {
+      setError(true);
+    }
+
   };
   useEffect(() => {
     fetching();
   }, [params.id]);
+
+
+  if(error){
+    return <h1>ERROR WHILE FETCHING DATA</h1>
+  }
 
   return (
     <Container maxW={"container.xl"}>

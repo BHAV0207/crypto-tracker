@@ -7,17 +7,29 @@ import ExchangeCard from "./ExchangeCard";
 function Exchanges() {
   let [exchanges, setExchanges] = useState([]);
   let [loading, setLoading] = useState(true);
+  let [error , setError] = useState(false);
+
 
   const fetchExchanges = async () => {
-    const { data } = await axios.get(`${server}/exchanges`);
-    setExchanges(data);
-    setLoading(false);
-    console.log(data);
+    try{
+      const { data } = await axios.get(`${server}/exchanges`);
+      setExchanges(data);
+      setLoading(false);
+      console.log(data);
+    }
+    catch{
+      setError(true);
+    }
+   
   };
 
   useEffect(() => {
     fetchExchanges();
   }, []);
+
+  if(error){
+    return <h1>ERROR WHILE FETCHING DATA</h1>
+  }
 
   return (
     <Container maxW={"container.xl"}>

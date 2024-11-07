@@ -28,7 +28,7 @@
 }
 
 .progress-bar-container {
-  width: 100%;          /* Full width */
+  width: 80vw;          /* Full width */
   height: 8px;          /* Adjust height as needed */
   background-color: #e2e8f0; /* Light gray background color */
   border-radius: 4px;    /* Rounded corners */
@@ -37,7 +37,11 @@
 
 .progress-bar {
   height: 100%;
-  width: 50%;           /* Initial width; adjust based on progress value */
+  width: 100%;           /* Initial width; adjust based on progress value */
   background-color: teal; /* Teal color to mimic Chakra UI’s colorScheme="teal" */
   transition: width 0.4s ease; /* Smooth transition for width change */
+}
+h1{
+  text-align: center;
+  height: 50vh;
 }
