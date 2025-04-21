@@ -30,14 +30,7 @@ Crypto Codex is a comprehensive cryptocurrency tracking application built with R
 3. Start the development server
   - bash
   - npm run dev
-    
-## Usage
-- Visit the home page to get started
-- Navigate to "Exchanges" to view cryptocurrency exchanges
-- Check "Coins" section for detailed cryptocurrency information
-- Click on any coin to view its detailed statistics and charts
 
-## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 ## License
