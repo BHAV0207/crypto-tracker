@@ -31,7 +31,3 @@ Crypto Codex is a comprehensive cryptocurrency tracking application built with R
   - bash
   - npm run dev
 
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
-## License
-[MIT](https://choosealicense.com/licenses/mit/)
